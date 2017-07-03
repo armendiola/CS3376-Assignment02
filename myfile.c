@@ -35,8 +35,8 @@ int main(int argc, char **argv) {
 		while(pos < com.length()){
 			int endPos = com.length();
 			std::stringstream ss;
-			printf(com.substr(pos, com.length()).c_str());
-			printf("\n");
+			//printf(com.substr(pos, com.length()).c_str());
+			//printf("\n");
 			if(com.substr(pos, endPos).find("|") < std::string::npos){
 				printf("HAS A PIPE\n");
 				endPos = com.substr(pos, endPos).find_first_of("|");
@@ -83,7 +83,7 @@ int main(int argc, char **argv) {
 				
 				} else if(std::regex_match(command, std::regex("append>>.*"))){
 					std::string f_name = command.substr(command.find_first_of(">>")+2, command.length());
-					printf(f_name.c_str());
+					//printf(f_name.c_str());
 					int writePID = open(f_name.c_str(), O_WRONLY | O_APPEND | O_CREAT, S_IRUSR | S_IWUSR);
 					int readPID = open("temp.txt", O_RDONLY);
 					while ((n = read(readPID, buf, BUFFSIZE)) > 0) {
