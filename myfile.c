@@ -96,6 +96,11 @@ int main(int argc, char **argv) {
 						fprintf(stderr, "read error\n");
 						exit(1);
 					}
+				}else if(std::regex_match(command, std::regex("ls"))){
+					DIR* dp = opendir("./");
+					struct dirent *dir;
+					while((dir = readdir(dp)) != NULL)
+						printf("%s\n", dir->d_name);
 				} else{
 					fprintf(stderr, "Invalid command");
 				}
