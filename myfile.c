@@ -38,7 +38,7 @@ int main(int argc, char **argv) {
 			//printf(com.substr(pos, com.length()).c_str());
 			//printf("\n");
 			if(com.substr(pos, endPos).find("|") < std::string::npos){
-				printf("HAS A PIPE\n");
+				//printf("HAS A PIPE\n");
 				endPos = com.substr(pos, endPos).find_first_of("|");
 			}
 			ss << com.substr(pos, endPos);
@@ -96,8 +96,13 @@ int main(int argc, char **argv) {
 						fprintf(stderr, "read error\n");
 						exit(1);
 					}
+				}else if(std::regex_match(command, std::regex("ls"))){
+					DIR* dp = opendir("./");
+					struct dirent *dir;
+					while((dir = readdir(dp)) != NULL)
+						printf("%s\n", dir->d_name);
 				} else{
-					fprintf(stderr, "Invalid command");
+					fprintf(stderr, "Invalid command\n");
 				}
 				exit(EX_OK);
 			}
